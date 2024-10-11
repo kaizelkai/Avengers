@@ -1,0 +1,54 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.slide{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.blocHorizontal{
+    display: flex;
+    flex-direction: row;
+    width: 500vw;
+    transform: rotate(90deg) translateY(-100vh);
+    transform-origin: top left;
+}
+
+.container{
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(-90deg) translateX(-100vh);
+    transform-origin: top left;
+    overflow-x: hidden;
+
+    -ms-overlow-style: none;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+.one{
+    background-color: aqua;
+}
+
+.two{
+    background-color: bisque;
+}
+
+.tree{
+    background-color: blue;
+}
+
+.four{
+    background-color: blueviolet;
+}
+.five{
+    background-color: chocolate;
+}
