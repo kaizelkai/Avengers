@@ -10,6 +10,7 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     overflow-x: hidden;
+    overflow: hidden; /* Empêcher le défilement par défaut */
 }
 
 header {
@@ -109,7 +110,7 @@ nav a:hover .menuEffet {
         position: absolute;
         top: 100px;
         right: 0;
-        background-color: #333;
+        background-color: #333333;
         width: 50%;
         height: 0;
         overflow: hidden;
@@ -133,13 +134,15 @@ nav a:hover .menuEffet {
 
 /* Style pour les slides */
 .slide {
+    position: relative; /* Assurez-vous que la section parent a une position relative */
+    height: 100vh; /* Chaque section prend 100% de la hauteur de l'écran */
     width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    color: white;
+    scroll-snap-align: start; /* Ancrage au début de chaque section */
+    transition: transform 0.5s ease; /* Transition pour le défilement */
 }
 
 .one { background-color: aqua; }
@@ -148,25 +151,29 @@ nav a:hover .menuEffet {
 .four { background-color: blueviolet; }
 .five { background-color: chocolate; }
 
-.blocHorizontal {
-    display: flex;
-    flex-direction: row;
-    width: 500vw;
-    transform: rotate(90deg) translateY(-100vh);
-    transform-origin: top left;
-}
-
-.container {
-    width: 100vh;
-    height: 100vw;
-    transform: rotate(-90deg) translateX(-100vh);
-    transform-origin: top left;
-    overflow-x: hidden;
-
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
 ::-webkit-scrollbar {
-    display: none;
+    display: none; /* Cacher la barre de défilement */
+}
+
+.arrow {
+    position: absolute;
+    top: 50%; /* Centrer verticalement */
+    transform: translateY(-50%); /* Ajuster le centrage vertical */
+}
+.arrow a {
+    display: block;
+}
+
+
+.arrow.left {
+    left: 0; /* Positionner au bord gauche */
+}
+
+.arrow.right {
+    right: 0; /* Positionner au bord droit */
+}
+
+.arrow img {
+    width: 50px; /* Ajustez la taille de l'image selon vos besoins */
+    height: auto;
 }

@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVENGERS</title>
-   
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <div class="iconTo">
-            <img src="img/trum-ppo.png" alt="Logo Avengers">
+            <img src="#" alt="Logo Avengers">
         </div>
         <!-- Menu de navigation fixe -->
         <nav id="navMenu">
             <div class="menubg">
-                <a href="#section1">
+                <a href="#">
                     <div class="menuEffet"></div>
                     ABOUT
                 </a>
-                <a href="#section2">
+                <a href="#">
                     <div class="menuEffet"></div>
                     TOKENOMICS
                 </a>
-                <a href="#section3">
+                <a href="#">
                     <div class="menuEffet"></div>
                     ROADMAP
                 </a>
-                <a href="#section4">
+                <a href="#">
                     <div class="menuEffet"></div>
                     TRUE SATOSHI
                 </a>
@@ -39,22 +38,109 @@
                 BUY NOW
             </a>
         </div>
-        <div class="menu-icon" aria-label="Menu" role="button" onclick="toggleMenu()">
-            &#9776;
-        </div>
+        <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">&#9776;</div>
     </header>
 
     <div class="container">
         <main class="blocHorizontal">
             <section class="slide one" id="section1">SECTION 1
-                <p>je sus</p>
+                
+                <div class="arrow right">
+                    <a href="#section2">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
             </section>
-            <section class="slide two" id="section2">SECTION 2</section>
-            <section class="slide tree" id="section3">SECTION 3</section>
-            <section class="slide four" id="section4">SECTION 4</section>
-            <section class="slide five" id="section5">SECTION 5</section>
+            <section class="slide two pivote2" id="section2">SECTION 2
+                <div class="arrow left">
+                    <a href="#section1">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="arrow right">
+                    <a href="#section3">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
+            </section>
+            <section class="slide tree" id="section3">SECTION 3
+                <div class="arrow left">
+                    <a href="#section2">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="arrow right">
+                    <a href="#section4">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
+            </section>
+            <section class="slide four pivote2" id="section4">SECTION 4
+                <div class="arrow left">
+                    <a href="#section3">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="arrow right">
+                    <a href="#section5">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
+            </section>
+            <section class="slide five" id="section5">SECTION 5
+                <div class="arrow left">
+                    <a href="#section4">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="arrow right">
+                    <a href="#section6">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
+            </section>
+            <section class="slide tree pivote2" id="section6">SECTION 6
+                <div class="arrow left">
+                    <a href="#section5">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="arrow right">
+                    <a href="#section7">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
+            </section>
+            <section class="slide two" id="section7">SECTION 7
+                <div class="arrow left">
+                    <a href="#section6">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="arrow right">
+                    <a href="#section8">
+                        <img src="media/img/rigth.png" alt="" srcset="">
+                    </a>
+                    
+                </div>
+            </section>
+            <section class="slide four pivote2" id="section8">SECTION 8
+                <div class="arrow left">
+                    <a href="#section7">
+                        <img src="media/img/LEFTS.jpg" alt="" srcset="">
+                    </a>
+                </div>
+            </section>
         </main>
     </div>
     <script src="js/menu.js"></script>
+    <script src="js/style.js"></script>
+    
 </body>
 </html>
