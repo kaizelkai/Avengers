@@ -134,16 +134,17 @@ nav a:hover .menuEffet {
 
 /* Style pour les slides */
 .slide {
-    position: relative; /* Assurez-vous que la section parent a une position relative */
-    height: 100vh; /* Chaque section prend 100% de la hauteur de l'écran */
+    position: relative;
+    height: 100vh; 
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    scroll-snap-align: start; /* Ancrage au début de chaque section */
-    transition: transform 0.5s ease; /* Transition pour le défilement */
+    scroll-snap-align: start; 
+    transition: none; /* Essayez de supprimer la transition pour déboguer */
 }
+
 
 .one { background-color: aqua; }
 .two { background-color: bisque; }

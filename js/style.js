@@ -2,73 +2,85 @@ let currentSection = null;
 let isApplying = false;
 
 function applyStyles() {
-    console.log("Applying styles 111111...");
+    console.log("Applying styles...");
     const blocHorizontal = document.querySelector('.blocHorizontal');
-    // Appliquer les styles via JavaScript
     blocHorizontal.style.display = "flex";
     blocHorizontal.style.flexDirection = "row";
     blocHorizontal.style.width = "800vw";
     blocHorizontal.style.transform = "rotate(90deg) translateY(-100vh)";
     blocHorizontal.style.transformOrigin = "top left";
-    blocHorizontal.style.scrollBehavior = "smooth"; // Activer un défilement fluide
 
-    // Sélectionner l'élément avec la classe "container"
     const container = document.querySelector('.container');
-    // Appliquer les styles via JavaScript
     container.style.width = "100vh";
     container.style.height = "100vw";
-    container.style.overflowY = "scroll"; // Activer le défilement vertical
-    container.style.scrollSnapType = "y mandatory"; // Activer le défilement par section
-
+    container.style.overflowY = "scroll";
+    container.style.scrollSnapType = "y mandatory";
     container.style.transform = "rotate(-90deg) translateX(-100vh)";
     container.style.transformOrigin = "top left";
     container.style.overflowX = "hidden";
 
-    // Cacher les barres de défilement dans certains navigateurs
-    //container.style.msOverflowStyle = "none"; // Pour Internet Explorer et Edge
-    //container.style.scrollbarWidth = "none";  // Pour Firefox
-    //container.style.webkitOverflowScrolling = "none"; // Pour WebKit
+    isApplying = true;
 
-
-    isApplying = true; // Mark that styles have been applied
+    // Garder la section visible après l'application des styles
+    const activeSection = document.querySelector(`#${currentSection}`);
+    if (activeSection) {
+        activeSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
 }
 
 function removeStyles() {
-    console.log("Removing styles 22222...");
+    console.log("Removing styles...");
     const blocHorizontal = document.querySelector('.blocHorizontal');
-    blocHorizontal.style.display = "";
+    blocHorizontal.style.display = "flex";
     blocHorizontal.style.flexDirection = "column";
-    blocHorizontal.style.width = "800vw";
-    blocHorizontal.style.transform = "rotate(0deg) translateY(0vh)";
+    blocHorizontal.style.width = "100%";
+    blocHorizontal.style.transform = "";
     blocHorizontal.style.transformOrigin = "top left";
-    blocHorizontal.style.scrollBehavior = "smooth";
 
     const container = document.querySelector('.container');
-
-    container.style.width = "100vw";
+    container.style.width = "100%";
     container.style.height = "100vh";
-    container.style.overflowY = "scroll"; // Activer le défilement vertical
-    container.style.scrollSnapType = "y mandatory"; // Activer le défilement par section
-
-    container.style.transform = "rotate(0deg) translateX(0vh)";
+    container.style.overflowY = "scroll";
+    container.style.scrollSnapType = "y mandatory";
+    container.style.transform = "";
     container.style.transformOrigin = "top left";
     container.style.overflowX = "hidden";
-    isApplying = false; // Mark that styles have been removed
+
+    isApplying = false;
+
+    // Garder la section visible après la suppression des styles
+    const activeSection = document.querySelector(`#${currentSection}`);
+    if (activeSection) {
+        activeSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
 }
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         const sectionId = entry.target.getAttribute('id');
-        if (entry.isIntersecting && sectionId !== currentSection) {
+
+        if (entry.isIntersecting) {
             console.log("Current visible section:", sectionId);
 
-            if (["section1", "section3", "section5", "section7"].includes(sectionId) && !isApplying) {
-                applyStyles();
-            } else if (["section2", "section4", "section6", "section8"].includes(sectionId) && isApplying) {
-                removeStyles();
-            }
+            // Ne pas changer la section si on est déjà en train de changer de style
+            if (sectionId !== currentSection) {
+                const previousSection = currentSection;
+                currentSection = sectionId;
 
-            currentSection = sectionId;
+                setTimeout(() => {
+                    // Vérifiez si on est en train d'appliquer des styles
+                    if (!isApplying) {
+                        if (["section1", "section3"].includes(sectionId)) {
+                            applyStyles();
+                        }
+                    } else {
+                        // Appliquez removeStyles uniquement si vous passez à une section 2, 4, 6, ou 8
+                        if (["section2", "section4"].includes(sectionId) && previousSection !== sectionId) {
+                            removeStyles();
+                        }
+                    }
+                },600); // Temporisation pour lisser la transition
+            }
         }
     });
 }, { threshold: 0.7 });
