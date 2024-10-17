@@ -1,6 +1,50 @@
 let currentSection = null;
 let isApplying = false;
 
+// Fonction pour désactiver le défilement
+function disableScroll() {
+    document.body.style.overflow = 'hidden';
+}
+
+// Fonction pour réactiver le défilement
+function enableScroll() {
+    document.body.style.overflow = 'auto';
+}
+
+// Garder la section visible après l'application des styles
+function ensureSectionIsVisible() {
+    const activeSection = document.querySelector(`#${currentSection}`);
+    if (activeSection) {
+        // Désactiver le défilement pendant le recentrage
+        disableScroll();
+
+        // Forcer le défilement jusqu'à la section souhaitée
+        window.scrollTo({
+            top: activeSection.offsetTop,
+            behavior: "smooth"
+        });
+
+        // Utiliser scrollIntoView pour s'assurer qu'elle reste bien visible
+        setTimeout(() => {
+            activeSection.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+                inline: "nearest"
+            });
+
+            // Ajuster le défilement manuellement si nécessaire (assure que c'est bien centré)
+            const rect = activeSection.getBoundingClientRect();
+            if (rect.top < 0 || rect.bottom > window.innerHeight) {
+                activeSection.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            // Réactiver le défilement après la mise en place de la section
+            setTimeout(() => {
+                enableScroll();
+            }, 100); // Ajustez la temporisation si nécessaire
+        }, 50); // Temporisation pour laisser les autres transitions se terminer
+    }
+}
 function applyStyles() {
     console.log("Applying styles...");
     const blocHorizontal = document.querySelector('.blocHorizontal');
@@ -22,10 +66,7 @@ function applyStyles() {
     isApplying = true;
 
     // Garder la section visible après l'application des styles
-    const activeSection = document.querySelector(`#${currentSection}`);
-    if (activeSection) {
-        activeSection.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    ensureSectionIsVisible();
 }
 
 function removeStyles() {
@@ -49,10 +90,7 @@ function removeStyles() {
     isApplying = false;
 
     // Garder la section visible après la suppression des styles
-    const activeSection = document.querySelector(`#${currentSection}`);
-    if (activeSection) {
-        activeSection.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    ensureSectionIsVisible();
 }
 
 const observer = new IntersectionObserver((entries) => {

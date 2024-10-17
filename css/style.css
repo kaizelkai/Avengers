@@ -142,7 +142,7 @@ nav a:hover .menuEffet {
     align-items: center;
     font-size: 2rem;
     scroll-snap-align: start; 
-    transition: none; /* Essayez de supprimer la transition pour déboguer */
+   
 }
 
 
